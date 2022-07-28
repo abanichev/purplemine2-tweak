@@ -1,0 +1,124 @@
+/* --- PARAMETERS  --- */
+
+:root {
+	--id-label-bgcolor: #707893;
+	--id-label-color: #b8bcc9;
+	--issue-odd-alpha: 0.23;
+	--issue-even-alpha: 0.20;
+	--issue-hover-alpha-inc: 0.15;
+	--issue-color-1: 255, 0, 0;
+	--issue-color-2: 255, 69, 0;
+	--issue-color-3: 255, 165, 0;
+	--issue-link-color: 62, 67, 89;
+	--group-bgcolor: 211, 211, 211;
+	--group-bgcolor-hover: 192, 192, 192;
+	--subject-max-width: 30vw;
+	--user-max-width: 10rem;
+}
+
+
+
+/* --- Disable tracker specific colors for "id" field --- */
+
+tr.issue td.id>a {
+	background-color: var(--id-label-bgcolor);
+}
+
+tr.issue td.id>a::before {
+	color: var(--id-label-color);
+}
+
+
+
+/* --- Enable priority specific colors for issues --- */
+
+tr.issue.odd  {
+	--prio-a: var(--issue-odd-alpha);
+}
+
+tr.issue.even {
+	--prio-a: var(--issue-even-alpha);
+}
+
+tr.issue.priority-31,
+tr.issue.priority-32,
+tr.issue.priority-35,
+tr.issue.priority-36 {
+	--prio-rgb: var(--issue-color-1);
+}
+
+tr.issue.priority-6 {
+	--prio-rgb: var(--issue-color-2);
+}
+
+tr.issue.priority-5 {
+	--prio-rgb: var(--issue-color-3);
+}
+
+tr.issue.priority-4,
+tr.issue.priority-3 {
+	--prio-rgb: 0, 0, 0;
+	--prio-a: 0;
+}
+
+tr.issue {
+	background-color: rgba(var(--prio-rgb), var(--prio-a));
+}
+
+tr.issue:hover {
+	background-color: rgba(var(--prio-rgb), calc(var(--prio-a) + var(--issue-hover-alpha-inc))) !important;
+}
+
+tr.group {
+	background-color: rgb(var(--group-bgcolor));
+}
+
+tr.group:hover {
+	background-color: rgb(var(--group-bgcolor-hover)) !important;
+}
+
+
+
+/* --- Increase "subject" field font-weight for some priorities --- */
+
+tr.issue.priority-31 td.subject>a,
+tr.issue.priority-32 td.subject>a,
+tr.issue.priority-35 td.subject>a,
+tr.issue.priority-36 td.subject>a,
+tr.issue.priority-6  td.subject>a {
+	font-weight: bold;
+}
+
+
+
+/* --- Change link color to grey  --- */
+
+tr.issue td>a {
+	color: rgb(var(--issue-link-color));
+}
+
+
+
+/* --- Decrease "author" field font-weight --- */
+
+tr.issue .author .user{
+	font-weight: inherit;
+}
+
+
+
+/* --- Add ellipsis overflow rule for some fields --- */
+
+tr.issue td.cf_25 {
+	max-width: var(--user-max-width);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+tr.issue td.subject {
+	max-width: var(--subject-max-width);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
