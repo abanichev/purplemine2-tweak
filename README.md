@@ -16,3 +16,7 @@ Client-side CSS modification for Redmine's Purplemine2 theme
 ## Configuration
 
 Some parameters can be tweaked in the `:root` selector on top of the CSS file.
+
+## Screenshot
+
+![image](https://github.com/abanichev/purplemine2-tweak/blob/main/purplemine2_tweak.png)
